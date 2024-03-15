@@ -27,7 +27,7 @@ function ChatComponent() {
         const fetchThreadId = async () => {
             try {
                 const response = await fetch('/api/create-thread', {
-                    method: 'POST', // Or 'GET', depending on how you've set up your endpoint
+                    method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
@@ -36,7 +36,7 @@ function ChatComponent() {
                     throw new Error('Network response was not ok');
                 }
                 const data = await response.json();
-                setThreadId(data.threadId); // Assuming your endpoint returns { threadId: 'some-id' }
+                setThreadId(data.threadId);
             } catch (error) {
                 console.error('Error fetching thread ID:', error);
             }
@@ -46,7 +46,7 @@ function ChatComponent() {
         if (!threadId) {
             fetchThreadId();
         }
-    }, []); // Empty dependency array means this effect runs once on mount
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     const testAPI = async (inputText) => {
         setResponseLoading(true); // Set loading state when sending a message
@@ -111,28 +111,6 @@ function ChatComponent() {
             handleSendMessage();
         }
     };
-
-
-    // pseudo logic for assistant api call 
-
-    // const handleAssistantMessage = async (inputText) => {
-    //     if {!agent} {
-    //         createAgent
-    //     }
-
-    //     handleAddMessage(inputText) // adds to thread and creates run
-
-    //     const status = incomplete
-
-    //     while status !== 'complete':
-    //         checkMessageStatus
-    //             if complete
-    //                 get message
-    //         wait 5 seconds
-
-    //     return message
-
-    // };
 
     return (
         <div className="relative flex-1 px-4 py-6 sm:px-6">
