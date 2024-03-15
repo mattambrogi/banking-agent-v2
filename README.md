@@ -1,0 +1,1 @@
+## Prototype of an agent embedded inside your banking application which can answer any question about your spending. 
